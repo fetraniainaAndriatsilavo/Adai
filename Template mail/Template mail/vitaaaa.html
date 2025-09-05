@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de votre demande - Les Ateliers FeelGood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f7f5;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: gentleFloat 25s infinite linear;
+        }
+        
+        @keyframes gentleFloat {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .logo-area {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .tagline {
+            font-size: 13px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .sparkle {
+            font-size: 18px;
+            margin: 0 6px;
+            animation: sparkle 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.15) rotate(10deg); }
+        }
+        
+        .content {
+            padding: 40px 35px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .name-placeholder {
+            background: linear-gradient(135deg, #f0ebe5, #e8ddd5);
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #8B4513;
+            font-weight: bold;
+            border: 1px dashed #D2691E;
+            display: inline-block;
+        }
+        
+        .thanks-section {
+            background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe5 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #D2691E;
+            text-align: center;
+        }
+        
+        .thanks-message {
+            font-size: 17px;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .analysis-section {
+            background: #fff8f0;
+            border: 1px solid #D2691E;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .analysis-icon {
+            background: #D2691E;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(210, 105, 30, 0.3);
+        }
+        
+        .analysis-text {
+            font-size: 16px;
+            color: #8B4513;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-section {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .timeline-text {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-highlight {
+            background: #8B4513;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-block;
+            box-shadow: 0 3px 10px rgba(139, 69, 19, 0.3);
+        }
+        
+        .resources-section {
+            margin: 30px 0;
+        }
+        
+        .resources-intro {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .resource-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(210, 105, 30, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .resource-card:hover::before {
+            left: 100%;
+        }
+        
+        .resource-card:hover {
+            border-color: #D2691E;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.15);
+        }
+        
+        .resource-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .resource-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 8px;
+        }
+        
+        .resource-link {
+            color: #D2691E;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+        
+        .resource-description {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .attachment-section {
+            background: #f0ebe5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            border: 1px dashed #D2691E;
+        }
+        
+        .attachment-icon {
+            font-size: 30px;
+            color: #D2691E;
+            margin-bottom: 10px;
+        }
+        
+        .attachment-text {
+            font-size: 14px;
+            color: #8B4513;
+            font-weight: 500;
+        }
+        
+        .closing-section {
+            margin-top: 35px;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe5 100%);
+            border-radius: 10px;
+        }
+        
+        .closing-message {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .signature {
+            font-size: 16px;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background-color: #8B4513;
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            font-size: 12px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .footer-highlight {
+            color: #D2691E;
+            font-weight: bold;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .thanks-message {
+                font-size: 16px;
+            }
+            
+            .greeting {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-text">
+                    <span class="sparkle">✨</span>
+                    Les Ateliers Feel Good
+                    <span class="sparkle">✨</span>
+                </div>
+                <div class="tagline">Artisanat de Luxe • Savoir-faire Responsable</div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Greeting -->
+            <div class="greeting">
+                Bonjour <span class="name-placeholder">[Prénom]</span>,
+            </div>
+            
+            <!-- Thanks Section -->
+            <div class="thanks-section">
+                <div class="thanks-message">
+                    Merci pour vos réponses <span style="font-size: 20px;">✨</span>
+                </div>
+            </div>
+            
+            <!-- Analysis Section -->
+            <div class="analysis-section">
+                <div class="analysis-icon">🔍</div>
+                <div class="analysis-text">
+                    Nous analysons votre demande avec attention.
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div class="timeline-section">
+                <div class="timeline-text">En attendant notre retour sous</div>
+                <div class="timeline-highlight">48h</div>
+            </div>
+            
+            <!-- Resources Section -->
+            <div class="resources-section">
+                <div class="resources-intro">
+                    vous pouvez découvrir :
+                </div>
+                
+                <div class="resources-grid">
+                    <!-- Website Card -->
+                    <div class="resource-card">
+                        <div class="resource-icon">🌐</div>
+                        <div class="resource-title">Notre Site Web</div>
+                        <a href="https://www.lesateliersfeelgood.com" class="resource-link">
+                            www.lesateliersfeelgood.com
+                        </a>
+                        <div class="resource-description">
+                            Découvrez notre univers et nos créations
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Card -->
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <div class="resource-title">Notre FAQ</div>
+                        <div class="resource-link">
+                            Délais, matières, processus...
+                        </div>
+                        <div class="resource-description">
+                            En pièce jointe de cet email
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attachment Section -->
+            <div class="attachment-section">
+                <div class="attachment-icon">📎</div>
+                <div class="attachment-text">
+                    FAQ - Questions Fréquemment Posées<br>
+                    <small>(Délais, matières, minimums de commande...)</small>
+                </div>
+            </div>
+            
+            <!-- Closing Section -->
+            <div class="closing-section">
+                <div class="closing-message">
+                    À très bientôt pour donner vie à votre projet !
+                </div>
+                <div class="signature">
+                    Les Ateliers Feel Good
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div><span class="footer-highlight">Analyse personnalisée</span> • <span class="footer-highlight">Réponse sous 48h</span> • <span class="footer-highlight">Accompagnement expert</span></div>
+                <div>Votre projet mérite toute notre attention</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

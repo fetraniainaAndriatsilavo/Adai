@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Contact Client - Les Ateliers FeelGood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f7f5;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M20 20L80 80M80 20L20 80" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+        
+        .logo-area {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 12px;
+            opacity: 0.9;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .subject-line {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            margin: -10px -10px 30px -10px;
+            border-left: 4px solid #D2691E;
+            border-radius: 4px;
+        }
+        
+        .subject-line h2 {
+            color: #8B4513;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .classification {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #D2691E;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        .greeting {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .notification-text {
+            font-size: 15px;
+            margin-bottom: 25px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .details-section {
+            background-color: #fafafa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid #eee;
+        }
+        
+        .details-title {
+            color: #8B4513;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .details-title::before {
+            content: "📋";
+            margin-right: 8px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #8B4513;
+            min-width: 140px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-value {
+            color: #333;
+            font-size: 14px;
+            flex: 1;
+            padding: 2px 8px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .closing {
+            margin-top: 30px;
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .signature {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .signature-name {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .signature-title {
+            color: #D2691E;
+            font-size: 13px;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background-color: #8B4513;
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        
+        .footer-highlight {
+            color: #D2691E;
+            font-weight: bold;
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 4px;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .details-section {
+                padding: 20px 15px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .detail-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-text">LES ATELIERS FEELGOOD</div>
+                <div class="tagline">Artisanat de Luxe • Madagascar</div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <div class="subject-line">
+                <h2>Notification – Contact client <span class="classification">[C1 / C2]</span></h2>
+            </div>
+            
+            <div class="greeting">
+                Bonjour,
+            </div>
+            
+            <div class="notification-text">
+                Nous vous informons qu'un client classé <strong>[C1 / C2]</strong> vient d'entrer en contact avec nous.
+            </div>
+            
+            <div class="details-section">
+                <div class="details-title">
+                    Détails du contact
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Nom / Entreprise :</div>
+                    <div class="detail-value">[Nom du client]</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Target price :</div>
+                    <div class="detail-value">[Montant / unité]</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Volume production :</div>
+                    <div class="detail-value">[Quantité]</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Prochain RDV :</div>
+                    <div class="detail-value">[Date / Lieu ou mode]</div>
+                </div>
+            </div>
+            
+            <div class="closing">
+                Bien cordialement,
+            </div>
+            
+            <div class="signature">
+                <div class="signature-name">Les Ateliers FeelGood</div>
+                <div class="signature-title">Fournisseur d'excellence • Artisanat de luxe</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div><span class="footer-highlight">Production durable</span> • <span class="footer-highlight">Impact social</span> • <span class="footer-highlight">Savoir-faire d'exception</span></div>
+                <div>Spécialisés dans la création de sacs et accessoires en raphia pour les marques de luxe</div>
+            </div>
+            <div class="contact-info">
+                Madagascar • Artisanat responsable • Autonomisation des femmes
+            </div>
+        </div>
+    </div>
+</body>
+</html>

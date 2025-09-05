@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processus de Collaboration - Les Ateliers FeelGood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f7f5;
+        }
+        
+        .email-container {
+            max-width: 650px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .logo-area {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .sparkle {
+            font-size: 20px;
+            margin: 0 8px;
+            animation: sparkle 2s infinite ease-in-out;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .content {
+            padding: 40px 35px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-section {
+            background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe5 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #D2691E;
+            position: relative;
+        }
+        
+        .form-section::before {
+            content: "👉";
+            position: absolute;
+            left: -2px;
+            top: 25px;
+            font-size: 20px;
+        }
+        
+        .form-intro {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            margin-left: 30px;
+        }
+        
+        .form-link {
+            display: inline-block;
+            background-color: #D2691E;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin: 10px 0 15px 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+        }
+        
+        .form-link:hover {
+            background-color: #8B4513;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+        
+        .important-note {
+            background-color: #fff8f0;
+            border: 1px solid #D2691E;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0 20px 30px;
+            font-size: 14px;
+            color: #8B4513;
+            position: relative;
+        }
+        
+        .important-note::before {
+            content: "📌";
+            position: absolute;
+            left: -2px;
+            top: 15px;
+        }
+        
+        .important-note-text {
+            margin-left: 25px;
+            font-weight: 500;
+        }
+        
+        .process-section {
+            margin: 35px 0;
+        }
+        
+        .process-title {
+            font-size: 20px;
+            color: #8B4513;
+            margin-bottom: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .process-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .process-step {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 50px;
+            padding-bottom: 20px;
+            border-left: 2px solid #f0f0f0;
+        }
+        
+        .process-step:last-child {
+            border-left: none;
+        }
+        
+        .process-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -12px;
+            top: 0;
+            background: linear-gradient(135deg, #D2691E, #8B4513);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(210, 105, 30, 0.3);
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .requirements-section {
+            background-color: #fafafa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .requirements-title {
+            font-size: 18px;
+            color: #8B4513;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .requirement-item {
+            background: white;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 3px solid #D2691E;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .requirement-number {
+            background-color: #D2691E;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .requirement-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .requirement-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .resources-section {
+            background: linear-gradient(135deg, #f0ebe5 0%, #e8ddd5 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .resources-title {
+            font-size: 16px;
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .resource-link {
+            display: block;
+            color: #D2691E;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            color: #8B4513;
+            text-decoration: underline;
+        }
+        
+        .closing-section {
+            margin-top: 35px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe5 100%);
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .closing-message {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .signature {
+            margin-top: 20px;
+        }
+        
+        .signature-closing {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .signature-name {
+            font-size: 16px;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background-color: #8B4513;
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            font-size: 12px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .footer-highlight {
+            color: #D2691E;
+            font-weight: bold;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 650px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .greeting {
+                font-size: 16px;
+            }
+            
+            .form-link {
+                margin-left: 0;
+                display: block;
+                text-align: center;
+            }
+            
+            .important-note {
+                margin-left: 0;
+            }
+            
+            .form-intro {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-text">
+                    <span class="sparkle">✨</span>
+                    Les Ateliers Feel Good
+                    <span class="sparkle">✨</span>
+                </div>
+                <div class="tagline">Artisanat de Luxe • Savoir-faire Responsable</div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Greeting -->
+            <div class="greeting">
+                Merci pour votre retour et votre intérêt pour notre savoir-faire <span style="font-size: 20px;">✨</span>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="form-intro">
+                    Avant d'aller plus loin dans notre collaboration, nous vous invitons à compléter impérativement ce formulaire :
+                </div>
+                
+                <a href="https://form.typeform.com/to/IrLnxYSO" class="form-link">
+                    Accéder au Formulaire
+                </a>
+                
+                <div class="important-note">
+                    <div class="important-note-text">
+                        Ce formulaire est <strong>obligatoire</strong> pour que nous puissions analyser votre demande et revenir vers vous. Sans cela, nous ne pourrons pas poursuivre la discussion.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process Section -->
+            <div class="process-section">
+                <div class="process-title">
+                    🎯 Notre processus de collaboration
+                </div>
+                
+                <ol class="process-steps">
+                    <li class="process-step">
+                        <div class="step-title">Formulaire à compléter (obligatoire)</div>
+                        <div class="step-description">Recueille toutes les informations clés pour évaluer la faisabilité, le coût et le planning.</div>
+                    </li>
+                    <li class="process-step">
+                        <div class="step-title">Échange design & technicité (rendez-vous)</div>
+                        <div class="step-description">Rencontre dédiée pour affiner le design, valider les contraintes techniques et anticiper les options de production.</div>
+                    </li>
+                    <li class="process-step">
+                        <div class="step-title">Validation du prix cible</div>
+                        <div class="step-description">On s'assure que vos attentes prix/marge sont compatibles avec les choix matériaux et finitions.</div>
+                    </li>
+                    <li class="process-step">
+                        <div class="step-title">Lancement de l'échantillonnage</div>
+                        <div class="step-description">Fabrication du prototype pour validation finale avant lancement de la production.</div>
+                    </li>
+                </ol>
+            </div>
+            
+            <!-- Requirements Section -->
+            <div class="requirements-section">
+                <div class="requirements-title">Ce dont nous avons besoin pour bien démarrer</div>
+                
+                <div class="requirements-grid">
+                    <div class="requirement-item">
+                        <div class="requirement-title">
+                            <span class="requirement-number">1</span>
+                            Design clair (ou direction esthétique)
+                        </div>
+                        <div class="requirement-desc">Pour respecter votre identité et estimer les finitions.</div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-title">
+                            <span class="requirement-number">2</span>
+                            Dimensions précises
+                        </div>
+                        <div class="requirement-desc">Indispensables pour calculer les matières, temps de fabrication et coût unitaire.</div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-title">
+                            <span class="requirement-number">3</span>
+                            Prix d'achat ou prix de vente cible
+                        </div>
+                        <div class="requirement-desc">Pour affiner un prix cohérent.</div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-title">
+                            <span class="requirement-number">4</span>
+                            Prévision de production (quantité & délais)
+                        </div>
+                        <div class="requirement-desc">Pour planifier capacité et calendrier de livraison.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="font-size: 15px; color: #333; margin: 25px 0; text-align: center; font-style: italic;">
+                Dès réception du formulaire, nous vous contacterons pour planifier l'échange technique et lancer le projet.
+            </div>
+            
+            <!-- Resources Section -->
+            <div class="resources-section">
+                <div class="resources-title">
+                    📚 En attendant, vous pouvez également consulter :
+                </div>
+                
+                <a href="https://www.lesateliersfeelgood.com/fr/questions-frequentes/" class="resource-link">
+                    • Notre FAQ (délais, minimums, matières…)
+                </a>
+                <a href="https://www.lesateliersfeelgood.com" class="resource-link">
+                    • Notre site web
+                </a>
+            </div>
+            
+            <!-- Closing Section -->
+            <div class="closing-section">
+                <div class="closing-message">
+                    Nous avons hâte de découvrir votre univers et de co-créer avec vous des pièces uniques et responsables <span style="font-size: 18px;">🌿</span>
+                </div>
+                
+                <div style="font-size: 16px; color: #8B4513; font-weight: 500; margin-bottom: 15px;">
+                    À très vite,
+                </div>
+                
+                <div class="signature">
+                    <div class="signature-closing">Bien à vous,</div>
+                    <div class="signature-name">Les Ateliers Feel Good</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div><span class="footer-highlight">Production durable</span> • <span class="footer-highlight">Impact social</span> • <span class="footer-highlight">Savoir-faire d'exception</span></div>
+                <div>Co-créons ensemble des pièces uniques et responsables</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
