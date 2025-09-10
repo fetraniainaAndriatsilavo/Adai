@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comparatif Sage vs Odoo</title>
+  <style>
+    :root{
+      --navy:#0b2640; /* bleu marine */
+      --caramel:#d9773b; /* orange caramel */
+      --muted:#f4f6f8;
+      --card-bg:#ffffff;
+      --text:#142028;
+      --accent:#0b2640;
+      --radius:12px;
+      font-family: Inter, Inter var, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:24px;background:linear-gradient(180deg,var(--muted),#ffffff);color:var(--text);}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .card{background:var(--card-bg);border-radius:var(--radius);box-shadow:0 6px 24px rgba(11,38,64,0.08);padding:20px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    h1{font-size:20px;margin:0;color:var(--navy)}
+    p.lead{margin:6px 0 0;color:#4b606b}
+
+    .legend{display:flex;gap:12px;align-items:center;margin-top:14px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-weight:600}
+    .pill--odoo{background:linear-gradient(90deg, rgba(13,60,96,0.06), rgba(217,119,59,0.03));color:var(--navy)}
+    .pill--sage{background:linear-gradient(90deg, rgba(217,119,59,0.06), rgba(11,38,64,0.02));color:var(--caramel)}
+
+    table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+    thead th{background:linear-gradient(90deg,var(--navy),var(--caramel));color:#fff;padding:14px;text-align:left;font-weight:700}
+    tbody tr{border-bottom:1px solid #edf1f4}
+    td,th{padding:12px 14px}
+    tbody td:first-child{width:28%;font-weight:700;color:#24393f}
+
+    .badge{display:inline-block;padding:6px 8px;border-radius:8px;font-size:12px;font-weight:700}
+    .badge--odoo{background:rgba(11,38,64,0.08);color:var(--navy)}
+    .badge--sage{background:rgba(217,119,59,0.08);color:var(--caramel)}
+
+    /* responsive */
+    @media (max-width:880px){
+      thead{display:none}
+      table,tbody,thead,tr{display:block;width:100%}
+      tbody tr{margin-bottom:12px;background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(2,6,23,0.03);padding:12px}
+      tbody td{display:flex;justify-content:space-between;padding:10px 12px}
+      tbody td:first-child{width:auto;flex:1 1 60%}
+      tbody td:last-child{flex:1 1 40%;text-align:right}
+    }
+
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+    .actions{display:flex;gap:8px}
+    .btn{border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn--primary{background:var(--navy);color:#fff}
+    .btn--outline{background:transparent;border:2px solid var(--caramel);color:var(--caramel)}
+    small{color:#6b7d84}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div>
+          <h1>Comparatif : Sage vs Odoo</h1>
+          <p class="lead">Tableau synthétique pour vous aider à choisir selon tes priorités (comptabilité, personnalisation, coût, etc.).</p>
+          <div class="legend">
+            <span class="pill pill--odoo">Odoo — Flexible & modulaire</span>
+            <span class="pill pill--sage">Sage — Fiable en comptabilité</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+        </div>
+      </header>
+
+      <table aria-label="Tableau comparatif Sage et Odoo">
+        <thead>
+          <tr>
+            <th>Critères</th>
+            <th>Odoo</th>
+            <th>Sage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Type de solution</td>
+            <td>ERP open-source, modulaire</td>
+            <td>ERP propriétaire, solutions packagées (Sage 100, X3...)</td>
+          </tr>
+          <tr>
+            <td>Modules disponibles</td>
+            <td>Très large couverture (CRM, Ventes, Stock, Comptabilité, MRP...)</td>
+            <td>Fort en finance/compta; modules métiers selon version</td>
+          </tr>
+          <tr>
+            <td>Flexibilité / Personnalisation</td>
+            <td><span class="badge badge--odoo">Très élevée</span> — grande communauté et modules</td>
+            <td><span class="badge badge--sage">Modérée</span> — personnalisations souvent plus coûteuses</td>
+          </tr>
+          <tr>
+            <td>Interface</td>
+            <td>Moderne, responsive (web & mobile)</td>
+            <td>Classique; peut sembler datée selon version</td>
+          </tr>
+          <tr>
+            <td>Déploiement</td>
+            <td>SaaS (Odoo Online) / On-premise (Community & Enterprise)</td>
+            <td>SaaS (Sage Business Cloud) / On-premise selon gamme</td>
+          </tr>
+          <tr>
+            <td>Évolutivité</td>
+            <td>Très forte — modules & API ouvertes</td>
+            <td>Dépend de la version; X3 plus extensible que 100</td>
+          </tr>
+          <tr>
+            <td>Coût licence</td>
+            <td>Community: gratuit; Enterprise: coût par utilisateur + modules</td>
+            <td>Licence payante par utilisateur, coût souvent supérieur</td>
+          </tr>
+          <tr>
+            <td>Maintenance</td>
+            <td>Communauté + prestataires; coût variable</td>
+            <td>Support officiel Sage, contrats de maintenance</td>
+          </tr>
+          <tr>
+            <td>Intégrations</td>
+            <td>API ouvertes et nombreux connecteurs</td>
+            <td>Connecteurs disponibles mais souvent payants</td>
+          </tr>
+          <tr>
+            <td>Comptabilité</td>
+            <td>Bonne couverture; nécessite paramétrage local</td>
+            <td>Point fort: conformité légale et fiscale robuste</td>
+          </tr>
+          <tr>
+            <td>Cible</td>
+            <td>PME, ETI, startups — très adapté aux entreprises en croissance</td>
+            <td>PME/ETI traditionnelles, cabinets comptables</td>
+          </tr>
+          <tr>
+            <td>Communauté / Écosystème</td>
+            <td>Large communauté mondiale + intégrateurs</td>
+            <td>Réseau d'intégrateurs certifiés, moins ouvert</td>
+          </tr>
+          <tr>
+            <td>Mises à jour</td>
+            <td>Régulières, nouvelles versions/func chaque année</td>
+            <td>Mises à jour axées sur conformité; cycles plus lents</td>
+          </tr>
+          <tr>
+            <td>Points forts</td>
+            <td>Flexibilité, coût abordable, interface moderne</td>
+            <td>Fiabilité comptable, conformité légale</td>
+          </tr>
+          <tr>
+            <td>Points faibles</td>
+            <td>Nécessite parfois du dev sur-mesure; paie locale parfois moins mature</td>
+            <td>Coûts élevés; rigidité; UI parfois datée</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+    </div>
+  </div>
+
+  <script>
+    function downloadHTML(){
+      const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'comparatif_sage_odoo.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
